@@ -75,6 +75,16 @@ def apply_primitive(procedure, args, env):
     4
     """
     "*** YOUR CODE HERE ***"
+    try:
+        python_readable_list=list(args)
+        if procedure.use_env==True:
+            python_readable_list.append(env)
+        return procedure.fn(*python_readable_list)
+
+    except TypeError:
+        raise SchemeError("whoops")
+
+
 
 ################
 # Environments #
