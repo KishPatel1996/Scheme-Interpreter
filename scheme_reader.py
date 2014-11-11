@@ -140,7 +140,7 @@ def scheme_read(src):
         return read_tail(src)
     else:
         raise SyntaxError("unexpected token: {0}".format(val))
-
+@trace
 def read_tail(src):
     """Return the remainder of a list in SRC, starting before an element or ).
 
@@ -169,6 +169,19 @@ def read_tail(src):
             return nil
         elif src.current() == ".":
             "*** YOUR CODE HERE ***"
+            src.pop()
+
+
+            if src.current()=="(" or src.current() =="'":
+                return scheme_read(src)
+            else:
+
+                return_statement=scheme_read(src)
+                if src.current() == ")" :
+                    src.pop()
+                    return return_statement
+                else:
+                    raise SyntaxError("Expected one element after .")
         else:
             first = scheme_read(src)
             rest = read_tail(src)
