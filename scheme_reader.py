@@ -169,6 +169,19 @@ def read_tail(src):
             return nil
         elif src.current() == ".":
             "*** YOUR CODE HERE ***"
+            src.pop()
+
+
+            if src.current()=="(":
+                return scheme_read(src)
+            else:
+
+                return_statement=src.pop()
+                if src.current() == ")" :
+                    src.pop()
+                    return return_statement
+                else:
+                    raise SyntaxError("Expected one element after .")
         else:
             first = scheme_read(src)
             rest = read_tail(src)
