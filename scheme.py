@@ -81,8 +81,8 @@ def apply_primitive(procedure, args, env):
             python_readable_list.append(env)
         return procedure.fn(*python_readable_list)
 
-    except TypeError:
-        raise SchemeError("whoops")
+    except TypeError as e:
+        raise SchemeError(e.__str__())
 
 
 
@@ -108,6 +108,10 @@ class Frame:
     def lookup(self, symbol):
         """Return the value bound to SYMBOL.  Errors if SYMBOL is not found."""
         "*** YOUR CODE HERE ***"
+        if symbol in self.bindings:
+            return self.bindings[symbol]
+        elif self.parent != None:
+            return self.parent.lookup(symbol)
         raise SchemeError("unknown identifier: {0}".format(str(symbol)))
 
 

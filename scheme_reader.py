@@ -140,7 +140,7 @@ def scheme_read(src):
         return read_tail(src)
     else:
         raise SyntaxError("unexpected token: {0}".format(val))
-@trace
+
 def read_tail(src):
     """Return the remainder of a list in SRC, starting before an element or ).
 
