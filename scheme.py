@@ -215,7 +215,7 @@ def do_define_form(vals, env):
         check_form(vals, 2, 2)
         "*** YOUR CODE HERE ***"
         if isinstance(vals[1],Pair):
-            env.define(target, scheme_apply(env.bindings[vals[1].first], vals[1].second,env))
+            env.define(target, scheme_apply(env.lookup(vals[1].first), vals[1].second,env))
         else:
             env.define(target, vals [1])
         return target
