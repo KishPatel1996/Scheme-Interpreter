@@ -173,7 +173,10 @@ def read_tail(src):
 
 
             if src.current()=="(" or src.current() =="'":
-                return scheme_read(src)
+                return_state=scheme_read(src)
+                if src.current()==")":
+                    src.pop()
+                return return_state
             else:
 
                 return_statement=scheme_read(src)

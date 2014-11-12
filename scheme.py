@@ -214,6 +214,7 @@ def do_define_form(vals, env):
     if scheme_symbolp(target):
         check_form(vals, 2, 2)
         "*** YOUR CODE HERE ***"
+        env.define(target, scheme_apply(vals[1][0], vals[1][1:], env))
     elif isinstance(target, Pair):
         "*** YOUR CODE HERE ***"
     else:
