@@ -176,7 +176,9 @@ def read_tail(src):
                 return_state=scheme_read(src)
                 if src.current()==")":
                     src.pop()
-                return return_state
+                    return return_state
+                else:
+                    return read_tail(src)
             else:
 
                 return_statement=scheme_read(src)
