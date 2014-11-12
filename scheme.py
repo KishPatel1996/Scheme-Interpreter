@@ -79,6 +79,11 @@ def apply_primitive(procedure, args, env):
         python_readable_list=list(args)
         if procedure.use_env==True:
             python_readable_list.append(env)
+        for index in range(0,len(python_readable_list)):
+            if scheme_symbolp(python_readable_list[index]):
+                python_readable_list[index]=env.lookup(python_readable_list[index])
+
+
         return procedure.fn(*python_readable_list)
 
     except TypeError as e:
@@ -217,7 +222,10 @@ def do_define_form(vals, env):
         if isinstance(vals[1],Pair):
             env.define(target, scheme_apply(env.lookup(vals[1].first), vals[1].second,env))
         else:
-            env.define(target, vals [1])
+            if scheme_symbolp(vals[1]):
+                env.define(target, env.lookup(vals[1]))
+            else:
+                env.define(target, vals[1])
         return target
     elif isinstance(target, Pair):
         "*** YOUR CODE HERE ***"
