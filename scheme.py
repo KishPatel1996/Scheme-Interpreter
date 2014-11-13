@@ -140,6 +140,12 @@ class Frame:
         """
         frame = Frame(self)
         "*** YOUR CODE HERE ***"
+        if len(formals) != len(vals):
+            raise SchemeError("length of formals and vals are not the same")
+        while formals != nil:
+            frame.bindings[formals.first]=vals.first
+            formals=formals.second
+            vals=vals.second
         return frame
 
     def define(self, sym, val):
