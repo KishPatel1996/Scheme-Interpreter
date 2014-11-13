@@ -204,7 +204,7 @@ def do_lambda_form(vals, env):
     formals = vals[0]
     check_formals(formals)
     "*** YOUR CODE HERE ***"
-    if len(vals.second)>=2:
+    if vals.second.second != nil:
         return LambdaProcedure(formals, Pair('begin', vals.second),env)
     return LambdaProcedure(formals,vals[1],env)
 
@@ -223,16 +223,15 @@ def do_define_form(vals, env):
         check_form(vals, 2, 2)
         "*** YOUR CODE HERE ***"
         env.define(target, scheme_eval(vals[1],env))
-        # if isinstance(vals[1],Pair):
-        #     env.define(target, scheme_apply(env.lookup(vals[1].first), vals[1].second,env))
-        # else:
-        #     if scheme_symbolp(vals[1]):
-        #         env.define(target, env.lookup(vals[1]))
-        #     else:
-        #         env.define(target, vals[1])
+
         return target
     elif isinstance(target, Pair):
         "*** YOUR CODE HERE ***"
+        if type(target[0]) is int:
+            raise SchemeError()
+        else:
+            env.define(target[0],do_lambda_form(Pair(target.second, vals.second), env))
+
     else:
         raise SchemeError("bad argument to define")
 
