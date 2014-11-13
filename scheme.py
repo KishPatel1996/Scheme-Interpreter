@@ -311,6 +311,11 @@ def do_begin_form(vals, env):
     check_form(vals, 1)
     "*** YOUR CODE HERE ***"
 
+    while vals.second != nil:
+        scheme_eval(vals.first, env)
+        vals=vals.second
+    return vals.first
+
 LOGIC_FORMS = {
         "and": do_and_form,
         "or": do_or_form,
