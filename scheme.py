@@ -310,11 +310,11 @@ def do_begin_form(vals, env):
     """Evaluate begin form with parameters VALS in environment ENV."""
     check_form(vals, 1)
     "*** YOUR CODE HERE ***"
-    return_state=None
-    while vals != nil:
-        return_state=scheme_eval(vals.first, env)
+
+    while vals.second != nil:
+        scheme_eval(vals.first, env)
         vals=vals.second
-    return return_state
+    return vals.first
 
 LOGIC_FORMS = {
         "and": do_and_form,
