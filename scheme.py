@@ -354,6 +354,20 @@ def check_formals(formals):
     >>> check_formals(read_line("(a b c)"))
     """
     "*** YOUR CODE HERE ***"
+    def formal_helper(formal_list, current_formals):
+        if not scheme_listp(current_formals):
+            raise SchemeError("Parameters are not a well-formed list")
+        if not scheme_symbolp(current_formals.first):
+            raise SchemeError("Parameter is not a scheme symbol")
+        if formal_list is not None and current_formals.first in formal_list:
+            raise SchemeError("Parameter is not distinct")
+        else:
+            formal_list += current_formals.first
+        if current_formals.second is nil:
+            return formal_list
+        formal_helper(formal_list, current_formals.second)
+    formal_helper(list(), formals)
+
 
 ##################
 # Tail Recursion #
