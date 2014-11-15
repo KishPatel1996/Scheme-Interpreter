@@ -240,6 +240,7 @@ def do_define_form(vals, env):
             raise SchemeError()
         else:
             env.define(target[0],do_lambda_form(Pair(target.second, vals.second), env))
+            return target[0]
 
     else:
         raise SchemeError("bad argument to define")
