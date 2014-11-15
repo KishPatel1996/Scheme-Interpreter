@@ -59,6 +59,9 @@ def scheme_apply(procedure, args, env):
     if isinstance(procedure, PrimitiveProcedure):
         return apply_primitive(procedure, args, env)
     elif isinstance(procedure, LambdaProcedure):
+        new_env = procedure.env.make_call_frame(procedure.formals, args)
+        return scheme_eval(procedure.body, new_env)
+
         "*** YOUR CODE HERE ***"
     elif isinstance(procedure, MuProcedure):
         "*** YOUR CODE HERE ***"
@@ -366,7 +369,11 @@ def check_formals(formals):
         if current_formals.second is nil:
             return formal_list
         formal_helper(formal_list, current_formals.second)
+<<<<<<< HEAD
     if not formals is nil:   
+=======
+    if not formals is nil:
+>>>>>>> origin/Problem-12
         formal_helper(list(), formals)
 
 
