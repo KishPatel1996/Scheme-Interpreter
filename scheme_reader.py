@@ -178,7 +178,7 @@ def read_tail(src):
                     src.pop()
                     return return_state
                 else:
-                    return read_tail(src)
+                    return SyntaxError("Expected one element after .")
             else:
 
                 return_statement=scheme_read(src)
