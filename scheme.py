@@ -321,10 +321,18 @@ def do_or_form(vals, env):
         return False
     elif vals.second is nil:
         return vals[0]
-    elif scheme_true(scheme_eval(vals[0],env)):
-        return quote(vals[0])
     else:
+        return_state=scheme_eval(vals[0],env)
+        if scheme_true(return_state):
+            return quote(return_state)
         return do_or_form(vals.second, env)
+        # if isinstance(vals[0],Pair) and vals[0][0]=="quote":
+        #     return vals[0]
+        # else:
+        #     return quote(vals[0])
+        # return quote(scheme_eval(vals[0],env))
+
+    # return do_or_form(vals.second, env)
 
 def do_cond_form(vals, env):
     """Evaluate cond form with parameters VALS in environment ENV."""
