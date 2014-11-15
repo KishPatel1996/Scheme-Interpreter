@@ -297,7 +297,7 @@ def do_and_form(vals, env):
     if vals is nil:
         return True
     if vals.second is nil:
-        return scheme_eval(vals[0],env)
+        return vals[0]
     if scheme_false(scheme_eval(vals[0],env)):
         return False
     else:
