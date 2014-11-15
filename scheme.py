@@ -301,7 +301,7 @@ def do_and_form(vals, env):
     if scheme_false(scheme_eval(vals[0],env)):
         return False
     else:
-        return True and do_and_form(vals.second,env)
+        return do_and_form(vals.second,env)
 
 def quote(value):
     """Return a Scheme expression quoting the Scheme VALUE.
@@ -317,6 +317,14 @@ def quote(value):
 def do_or_form(vals, env):
     """Evaluate short-circuited or with parameters VALS in environment ENV."""
     "*** YOUR CODE HERE ***"
+    if vals is nil:
+        return False
+    elif vals.second is nil:
+        return vals[0]
+    elif scheme_true(scheme_eval(vals[0],env)):
+        return quote(vals[0])
+    else:
+        return do_or_form(vals.second, env)
 
 def do_cond_form(vals, env):
     """Evaluate cond form with parameters VALS in environment ENV."""
