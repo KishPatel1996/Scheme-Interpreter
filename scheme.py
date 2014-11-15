@@ -240,6 +240,7 @@ def do_define_form(vals, env):
             raise SchemeError()
         else:
             env.define(target[0],do_lambda_form(Pair(target.second, vals.second), env))
+            return target[0]
 
     else:
         raise SchemeError("bad argument to define")
@@ -280,6 +281,12 @@ def do_if_form(vals, env):
     """Evaluate if form with parameters VALS in environment ENV."""
     check_form(vals, 2, 3)
     "*** YOUR CODE HERE ***"
+    if scheme_true(scheme_eval(vals[0],env)):
+        return vals[1]
+    else:
+        if len(vals)==2:
+            return okay
+        return vals[2]
 
 def do_and_form(vals, env):
     """Evaluate short-circuited and with parameters VALS in environment ENV."""

@@ -81,7 +81,7 @@ circumference
 ; expect 62.8318
 
 ;;; 1.1.4
-(exit)
+
 (define (square x) (* x x))
 ; expect square
 (square 21)
@@ -108,7 +108,7 @@ circumference
 ; expect 136
 
 ;;; 1.1.6
-
+(exit)
 (define (abs x)
   (cond ((> x 0) x)
         ((= x 0) 0)
