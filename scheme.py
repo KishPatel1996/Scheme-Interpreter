@@ -369,12 +369,6 @@ def check_formals(formals):
         if current_formals.second is nil:
             return formal_list
         formal_helper(formal_list, current_formals.second)
-<<<<<<< HEAD
-    if not formals is nil:   
-=======
-    if not formals is nil:
->>>>>>> origin/Problem-12
-        formal_helper(list(), formals)
 
 
 ##################
