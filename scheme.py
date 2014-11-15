@@ -87,7 +87,7 @@ def apply_primitive(procedure, args, env):
         return procedure.fn(*python_readable_list)
 
     except TypeError as e:
-        raise SchemeError(e.__str__())
+        raise SchemeError(str(e))
 
 
 
