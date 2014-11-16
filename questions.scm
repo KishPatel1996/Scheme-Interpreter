@@ -27,7 +27,9 @@
 ;; Turns a list of pairs into a pair of lists
 (define (zip pairs)
   'YOUR-CODE-HERE
-  )
+  (cond ((null? pairs) (cons nil (cons nil nil)))
+        (else (cons (cons (caar pairs) (car (zip (cdr pairs)))) (cons (cons (cadar pairs) (cadr (zip (cdr pairs)))) nil)))
+  ))
 
 (zip '())
 ; expect (() ())
