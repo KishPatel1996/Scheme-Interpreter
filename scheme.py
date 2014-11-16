@@ -265,6 +265,15 @@ def do_let_form(vals, env):
     names, values = nil, nil
     "*** YOUR CODE HERE ***"
     new_env = env.make_call_frame(names, values)
+    for val in vals[0]:
+
+
+
+        check_form(val,2,2)
+        if scheme_symbolp(val[0]):
+            new_env.define(val[0],scheme_eval(val[1],env))
+        else:
+            raise SchemeError("target not symbol")
 
     # Evaluate all but the last expression after bindings, and return the last
     last = len(exprs)-1
@@ -351,7 +360,7 @@ def do_cond_form(vals, env):
             "*** YOUR CODE HERE ***"
             if not clause.second is nil:
                 if len(clause.second) < 2:
-                    return quote(clause.second.first)
+                    return clause.second.first
                 return scheme_eval(do_begin_form(clause.second, env), env)
             else:
                 return test

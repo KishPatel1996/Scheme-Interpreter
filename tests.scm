@@ -108,7 +108,7 @@ circumference
 ; expect 136
 
 ;;; 1.1.6
-(exit)
+
 (define (abs x)
   (cond ((> x 0) x)
         ((= x 0) 0)
@@ -540,7 +540,7 @@ one-through-four
 
 ((lambda (x) (display x) (newline) x) 2)
 ; expect 2 ; 2
-
+(exit)
 (define g (mu () x))
 (define (high f x)
   (f))
