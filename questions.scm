@@ -39,11 +39,24 @@
 ; expect ((1 3 5) (2 4 6))
 
 ; Problem 19
-
+(define (extend s t)
+  (cond ((null? s) t)
+        (else (cons (car s) (extend (cdr s) t)))))
 ;; A list of all ways to partition TOTAL, where  each partition must
 ;; be at most MAX-VALUE and there are at most MAX-PIECES partitions.
 (define (list-partitions total max-pieces max-value)
   'YOUR-CODE-HERE
+  (define (partitions n m) 
+    (cond ((= n 0) (cons nil nil))
+          ((< n 0) nil)
+          ((= m 0) nil)
+          (else
+            (begin
+              (define yes (partitions (- n m) m))
+              (define no (partitions n (- m 1)))
+              (define yes (apply-to-all (lambda (s) (cons m s)) yes))
+              (extend yes no)))))
+   (keep-if (lambda (seq) (<= (length seq) max-pieces)) (partitions total max-value))
   )
 
 (list-partitions 5 2 4)
