@@ -83,8 +83,9 @@
          expr
          )
         ((quoted? expr)
+          'Fail-1
+          (quote expr)
 
-        expr
          )
         ((or (lambda? expr)
              (define? expr))
@@ -92,15 +93,27 @@
                (params (cadr expr))
                (body   (cddr expr)))
            'YOUR-CODE-HERE
+           (cons form (cons params (analyze (quote body))))
+
            ))
         ((let? expr)
          (let ((values (cadr expr))
                (body   (cddr expr)))
-           'YOUR-CODE-HERE
+
+
+
+
+           (begin
+             (define vars (car (zip values)))
+             (define vals (cdr (zip values)))
+             (analyze (quote ((lambda  vars (analyze (quote body)))  vals) ))
+            ; (analyze (quote (cons lambda (cons vars (cons (cons analyze (cons body) nil) vals)))))
+            ; (analyze ((lambda vars (analyze body)) vals) )
+             )
+
            ))
         (else
-         'YOUR-CODE-HERE
-         (display 'hi)
+         expr
 
          )))
 
