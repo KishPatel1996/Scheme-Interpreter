@@ -540,7 +540,7 @@ one-through-four
 
 ((lambda (x) (display x) (newline) x) 2)
 ; expect 2 ; 2
-(exit)
+
 (define g (mu () x))
 (define (high f x)
   (f))
@@ -574,7 +574,7 @@ one-through-four
     (+ 1 (len (cdr s)))))
 (len '(1 2 3 4))
 ; expect 4
-
+(exit)
 
 ;;;;;;;;;;;;;;;;;;;;
 ;;; Extra credit ;;;

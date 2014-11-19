@@ -46,7 +46,7 @@
 ;; be at most MAX-VALUE and there are at most MAX-PIECES partitions.
 (define (list-partitions total max-pieces max-value)
   'YOUR-CODE-HERE
-  (define (partitions n m) 
+  (define (partitions n m)
     (cond ((= n 0) (cons nil nil))
           ((< n 0) nil)
           ((= m 0) nil)
@@ -79,25 +79,28 @@
 ;; Converts all let special forms in EXPR into equivalent forms using lambda
 (define (analyze expr)
   (cond ((atom? expr)
-         'YOUR-CODE-HERE
+
+         expr
          )
         ((quoted? expr)
-         'YOUR-CODE-HERE
+
+        (cdr expr)
          )
         ((or (lambda? expr)
              (define? expr))
          (let ((form   (car expr))
                (params (cadr expr))
                (body   (cddr expr)))
-           'YOUR-CODE-HERE
+           'Fail-1
            ))
         ((let? expr)
          (let ((values (cadr expr))
                (body   (cddr expr)))
-           'YOUR-CODE-HERE
+           'Fail-2
            ))
         (else
-         'YOUR-CODE-HERE
+         'Fail-3
+         (cons (analyze (car expr) (analyze (cdr expr))))
          )))
 
 (analyze 1)
@@ -136,7 +139,3 @@
 (define (hax d k)
   'YOUR-CODE-HERE
   nil)
-
-
-
-
