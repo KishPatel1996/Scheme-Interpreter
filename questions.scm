@@ -84,23 +84,24 @@
          )
         ((quoted? expr)
 
-        (cdr expr)
+        expr
          )
         ((or (lambda? expr)
              (define? expr))
          (let ((form   (car expr))
                (params (cadr expr))
                (body   (cddr expr)))
-           'Fail-1
+           'YOUR-CODE-HERE
            ))
         ((let? expr)
          (let ((values (cadr expr))
                (body   (cddr expr)))
-           'Fail-2
+           'YOUR-CODE-HERE
            ))
         (else
-         'Fail-3
-         (cons (analyze (car expr) (analyze (cdr expr))))
+         'YOUR-CODE-HERE
+         (display 'hi)
+
          )))
 
 (analyze 1)
