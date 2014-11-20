@@ -93,7 +93,7 @@
                (params (cadr expr))
                (body   (cddr expr)))
            'YOUR-CODE-HERE
-           (cons form (cons params (analyze (quote body))))
+           (cons form (cons params (analyze (apply-to-all analyze body))))
 
            ))
         ((let? expr)
@@ -105,10 +105,10 @@
 
            (begin
              (define vars (car (zip values)))
-             (define vals (cdr (zip values)))
-             (analyze (quote ((lambda  vars (analyze (quote body)))  vals) ))
-            ; (analyze (quote (cons lambda (cons vars (cons (cons analyze (cons body) nil) vals)))))
-            ; (analyze ((lambda vars (analyze body)) vals) )
+             (define vals (cadr (zip values)))
+            ; (analyze (quote ((lambda  vars (analyze (quote body)))  vals) ))
+            ; (cons analyze (cons quote (cons lambda (cons vars (cons body (cons vals nil))))))
+            (analyze (cons (cons 'lambda (cons  vars (analyze body))) vals))
              )
 
            ))
