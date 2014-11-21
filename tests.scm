@@ -80,8 +80,67 @@
 ;;;PROPER NESTING;;;
 (cons (cons (cons (cons 1 (cons 2 nil)) nil) nil) nil)
 ; expect ((((1 2))))
+;q1
+'bagel
+; expect bagel
+;'bagel'
+;; expect bagel
+
+;q2
+(cons 1 (cons 2 3))
+; expect (1 2 . 3)
+(cons 3 (cons 4 5))
+; expect (3 4 . 5)
+(cons (cons 1 2) (cons 3 4))
+;expect ((1 . 2) 3 . 4)
+
+;q3
+(define alist (cons 1 (cons 2 3)))
+; expect alist
+(car alist)
+; expect 1
+(cdr alist)
+; expect (2 . 3)
+(+ (- (car alist) (cadr alist)) (cddr alist))
+; expect 2
+
+;q4
++
+; expect #[primitive]
+(+ 1 2)
+; expect 3
+(* 3 4 (- 5 2) 1)
+; expect 36
+(odd? 31)
+; expect True
+(+ 1)
+; expect 1
+(* 3)
+; expect 3
+(+ (* 3 3) (* 4 4))
+; expect 25
+(define a (define b 3))
+; expect a
+a
+; expect b
 
 
+;q5
+(define tau (* 2 3.1415926))
+; expect tau
+
+(define a 1)
+; expect a
+a
+; expect 1
+(define b a)
+; expect b
+b
+; expect 1
+(define c 'a)
+; expect c
+c 
+; expect a
 
 ;;; These are examples from several sections of "The Structure
 ;;; and Interpretation of Computer Programs" by Abelson and Sussman.
