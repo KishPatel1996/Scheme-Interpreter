@@ -46,7 +46,7 @@
 ;; be at most MAX-VALUE and there are at most MAX-PIECES partitions.
 (define (list-partitions total max-pieces max-value)
   'YOUR-CODE-HERE
-  (define (partitions n m) 
+  (define (partitions n m)
     (cond ((= n 0) (cons nil nil))
           ((< n 0) nil)
           ((= m 0) nil)
@@ -108,7 +108,7 @@
              (define vals (cadr (zip values)))
             ; (analyze (quote ((lambda  vars (analyze (quote body)))  vals) ))
             ; (cons analyze (cons quote (cons lambda (cons vars (cons body (cons vals nil))))))
-            (analyze (cons (cons 'lambda (cons  vars body)) vals))
+            (analyze (cons (cons 'lambda (cons  vars (analyze body))) vals))
              )
 
            ))
@@ -154,7 +154,3 @@
 (define (hax d k)
   'YOUR-CODE-HERE
   nil)
-
-
-
-
