@@ -93,7 +93,7 @@
                (params (cadr expr))
                (body   (cddr expr)))
            'YOUR-CODE-HERE
-           (cons form (cons params (analyze (apply-to-all analyze body))))
+           (cons form (cons params (apply-to-all analyze body)))
 
            ))
         ((let? expr)
@@ -108,12 +108,12 @@
              (define vals (cadr (zip values)))
             ; (analyze (quote ((lambda  vars (analyze (quote body)))  vals) ))
             ; (cons analyze (cons quote (cons lambda (cons vars (cons body (cons vals nil))))))
-            (analyze (cons (cons 'lambda (cons  vars (analyze body))) vals))
+            (apply-to-all analyze (cons (cons 'lambda (cons  vars body)) vals))
              )
 
            ))
         (else
-         expr
+         (apply-to-all analyze expr)
 
          )))
 
