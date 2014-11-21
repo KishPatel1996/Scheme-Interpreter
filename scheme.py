@@ -86,9 +86,7 @@ def apply_primitive(procedure, args, env):
         python_readable_list=list(args)
         if procedure.use_env==True:
             python_readable_list.append(env)
-        # for index in range(0,len(python_readable_list)):
-        #     if scheme_symbolp(python_readable_list[index]):
-        #         python_readable_list[index]=env.lookup(python_readable_list[index])
+
 
 
         return procedure.fn(*python_readable_list)
@@ -344,13 +342,7 @@ def do_or_form(vals, env):
         if scheme_true(return_state):
             return quote(return_state)
         return do_or_form(vals.second, env)
-        # if isinstance(vals[0],Pair) and vals[0][0]=="quote":
-        #     return vals[0]
-        # else:
-        #     return quote(vals[0])
-        # return quote(scheme_eval(vals[0],env))
 
-    # return do_or_form(vals.second, env)
 
 def do_cond_form(vals, env):
     """Evaluate cond form with parameters VALS in environment ENV."""
@@ -372,7 +364,7 @@ def do_cond_form(vals, env):
                     return clause.second.first
                 return scheme_eval(do_begin_form(clause.second, env), env)
             else:
-                return test
+                return quote(test)
     return okay
 
 def do_begin_form(vals, env):
