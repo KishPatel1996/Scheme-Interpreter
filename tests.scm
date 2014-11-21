@@ -119,10 +119,7 @@
 ; expect 3
 (+ (* 3 3) (* 4 4))
 ; expect 25
-(define a (define b 3))
-; expect a
-a
-; expect b
+
 
 
 ;q5
@@ -141,12 +138,47 @@ b
 ; expect c
 c
 ; expect a
+(define a (define b 3))
+; expect a
+a
+; expect b
+
+;q6
+(car '(go bears))
+; expect go
+(eval (cons 'cadr '( '(go bears) )))
+; expect bears
+
+;q7
+(begin 30 'hello)
+; expect hello
+
+;q9
+
+(define (f x) 
+  (define (g y) 
+    (define (h z) (+ x y z)) 
+    h) 
+  g)
+; expect f
+(((f 3) 3 ) 3 )
+; expect 9
+(((f (+ 3 3)) (* 4 4) ) (- 5 5) )
+; expect 22
 
 ;q12
 
 (cond (12))
-;expect 12
+; expect 12
 (cond ((= 4 3)) ('hi))
+; expect hi
+(cond ((= 2 1) 1 /0)
+      ((= 2 2)
+        (cond ((= 2 1) 1/0)
+              (else 'bears!)))
+      (else 'go!))
+; expect bears!
+
 
 
 
