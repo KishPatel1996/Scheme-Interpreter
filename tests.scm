@@ -142,6 +142,14 @@ b
 c
 ; expect a
 
+;q12
+
+(cond (12))
+;expect 12
+(cond ((= 4 3)) ('hi))
+
+
+
 ;;; These are examples from several sections of "The Structure
 ;;; and Interpretation of Computer Programs" by Abelson and Sussman.
 
