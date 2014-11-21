@@ -303,9 +303,7 @@ def do_if_form(vals, env):
         if vals.second.second is nil:
             return okay
         return vals[2]
-        # if len(vals)==2:
-        #     return okay
-        # return vals[2]
+        
 
 def do_and_form(vals, env):
     """Evaluate short-circuited and with parameters VALS in environment ENV."""
