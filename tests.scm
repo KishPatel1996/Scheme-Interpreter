@@ -152,6 +152,14 @@ a
 ;q7
 (begin 30 'hello)
 ; expect hello
+(begin 'hey 'alumni 'go 'bears)
+; expect bears
+
+;q8
+ ((lambda (x y) (+ x y)) 6 7)
+; expect 13
+((lambda (f) (f 2))(lambda (x) (* x x)))
+; expect 4
 
 ;q9
 
@@ -166,8 +174,27 @@ a
 (((f (+ 3 3)) (* 4 4) ) (- 5 5) )
 ; expect 22
 
-;q12
+;q10
+((lambda (f x y) (f x y)) (lambda (y x) (- y x)) 2 1)
+; expect 1
 
+;q13
+(if #f #f #t)
+;expect True
+(if (= 4 4) 
+  (if (= 4 2) #t #f)
+   (1/0))
+; expect False
+
+;q14
+(and #t (or #t 1/0) (and #f 1/0) 1/0)
+; expect False
+(and #t (or #t (and 1/0 #t)) (or (or #f #t 1/0) 1/0))
+; expect True
+(and #t (or 1/0 (and 1/0 #t)) (or (or #f #t 1/0) 1/0))
+; expect Error
+
+;q15
 (cond (12))
 ; expect 12
 (cond ((= 4 3)) ('hi))
