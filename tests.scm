@@ -139,7 +139,7 @@ b
 ; expect 1
 (define c 'a)
 ; expect c
-c 
+c
 ; expect a
 
 ;;; These are examples from several sections of "The Structure
@@ -712,7 +712,7 @@ one-through-four
 ;;; Extra credit ;;;
 ;;;;;;;;;;;;;;;;;;;;
 
-(exit)
+
 
 ; Tail call optimization test
 (define (sum n total)
@@ -720,3 +720,4 @@ one-through-four
     (sum (- n 1) (+ n total))))
 (sum 1001 0)
 ; expect 501501
+(exit)
