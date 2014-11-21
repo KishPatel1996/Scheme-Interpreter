@@ -206,12 +206,19 @@ a
       (else 'go!))
 ; expect bears!
 
+;q16
+(let ((x 4)) (let ((x 6) (y (+ x 2))) (* x y)))
+; expect 36
+
 (load 'questions.scm)
 ;q17
 (define m (mu (x) (+ x (* z x))))
 (define g (lambda (x z) (m (* x x))))
 (g 10 -1)
 ; expect 0
+(define q (lambda (z x) (m (* x x))))
+(q 10 -1)
+; expect 11
 
 ;q18
 (zip '((-3 2) (0 4)))
@@ -237,8 +244,6 @@ a
       (fib-iter (+ a b) a (- count 1))))
 (fib 50)
 ; expect 12586269025
-(fib 100)
-; expect 354224848179262000000
 
 
 ;;; These are examples from several sections of "The Structure
