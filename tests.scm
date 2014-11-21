@@ -9,6 +9,73 @@
 ;;; **********************************
 ;;; *** Add more of your own here! ***
 ;;; **********************************
+;;;
+(define (cddr s)
+(cdr (cdr s)))
+
+(define (cadr s)
+(car (cdr s)))
+
+(define (caddr s)
+(car (cddr s)))
+
+(define (tree entry left right) (list entry left right))
+(define (entry t) (car t))
+(define (left t) (cadr t))
+(define (right t) (caddr t))
+(define (empty? s) (null? s))
+(define (leaf entry) (tree entry nil nil))
+(define (in? t v)
+(cond ((empty? t) false)
+((= (entry t) v) true)
+((< (entry t) v) (in? (right t) v))
+((> (entry t) v) (in? (left t) v))
+))
+
+(define odd-tree (tree 3 (leaf 1)
+(tree 7 (leaf 5)
+(tree 9 nil (leaf 11)))))
+
+
+(define (as-list t)
+(define (extend t s)
+(if (empty? t) s
+  (extend (left t)
+  (cons (entry t) (extend (right t) s)))))
+  (extend t nil)
+  )
+
+(as-list odd-tree)
+; expect (1 3 5 7 9 11)
+(as-list (right odd-tree))
+; expect (5 7 9 11)
+
+
+(define (intersect s t)
+(cond ((or (empty? s) (empty? t)) nil)
+((= (car s) (car t)) (cons (car s) (intersect (cdr s) (cdr t))))
+((< (car s) (car t)) (intersect (cdr s) t))
+((> (car s) (car t)) (intersect s (cdr t)))
+))
+
+(define eight (list 1 2 3 4 5 6 7 8))
+
+
+(define (union s t)
+(cond ((empty? s) t)
+((empty? t) s)
+((= (car s) (car t)) (cons (car s) (union (cdr s) (cdr t))))
+((< (car s) (car t)) (cons (car s) (union (cdr s) t)))
+((> (car s) (car t)) (cons (car t) (union s (cdr t))))
+))
+(define odds (list 3 5 7 9))
+(union odds (list 2 3 4 5))
+; expect (2 3 4 5 7 9)
+(union odds (list 2 4 6 8))
+; expect (2 3 4 5 6 7 8 9)
+(union odds eight)
+; expect (1 2 3 4 5 6 7 8 9)
+
 
 ;;; These are examples from several sections of "The Structure
 ;;; and Interpretation of Computer Programs" by Abelson and Sussman.
@@ -540,7 +607,7 @@ one-through-four
 
 ((lambda (x) (display x) (newline) x) 2)
 ; expect 2 ; 2
-(exit)
+
 (define g (mu () x))
 (define (high f x)
   (f))
