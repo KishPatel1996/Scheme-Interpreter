@@ -77,6 +77,12 @@
 ; expect (1 2 3 4 5 6 7 8 9)
 
 
+;;;PROPER NESTING;;;
+(cons (cons (cons (cons 1 (cons 2 nil)) nil) nil) nil)
+; expect ((((1 2))))
+
+
+
 ;;; These are examples from several sections of "The Structure
 ;;; and Interpretation of Computer Programs" by Abelson and Sussman.
 
